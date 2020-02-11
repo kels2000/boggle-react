@@ -1,4 +1,4 @@
-
+/* eslint-disable no-undef */
 import React, { useState, useEffect } from 'react';
 import firebase from 'firebase';
 import { Button } from '@material-ui/core';
