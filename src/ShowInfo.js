@@ -2,21 +2,18 @@
 import React, { useState, useEffect } from 'react';
 import firebase from 'firebase';
 import { Button } from '@material-ui/core';
-import Board from './Board.js';
- 
+
 function ShowInfo({collectionName}) {
  
   const [dataList, setDataList] = useState(/* initial state= */ []);
-  const [grid, setGrid] = useState([]);
-  const [foundSolutions, setFoundSolutions] = useState([]);
 
   useEffect(
     () => {
-      const unsubscribe = firebase.firestore().collection("challenges")
+      const unsubscribe = firebase.firestore().collection("challenge-info")
       .onSnapshot((querySnapshot) => {
           var firestoreData = [];
           querySnapshot.forEach(function(doc) {
-            firestoreData.push({name: doc.data().name, highscore: doc.data().highscore, grid: doc.data().grid});
+            firestoreData.push({name: doc.data().name, highscore: doc.data().highscore});
           });
           setDataList(firestoreData);
         });
@@ -24,17 +21,6 @@ function ShowInfo({collectionName}) {
     },
     []
   )
-
-  function showBoard() {
-    dataList.map((data) => {
-      if (data.name === "Challenge 1") {
-        setGrid(data.grid)
-        return (<Board board={grid} />)
-      }
-
-    })
-    
-  }
 
   return (
     <div>
