@@ -19,7 +19,7 @@ function ToggleGameState({gameState, setGameState}) {
 
   return (
     <div className="Toggle-game-state">
-      <Button onClick={() => updateGameState()} >
+      <Button variant = 'contained' onClick={() => updateGameState()} >
         {buttonText}
       </Button>
     </div>
